@@ -24,26 +24,13 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
 
-  PageController _pageController = PageController(initialPage: 1);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("PageView"),
-        actions: [
-          IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-            _pageController.animateToPage(0, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
-
-          }),
-          IconButton(icon: Icon(Icons.arrow_forward), onPressed: (){
-            _pageController.animateToPage(2, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
-
-          } ),
-        ],
-      ),
       body:  PageView(
-        controller: _pageController,
+        onPageChanged: (index){
+          print("page $index is changed");
+        },
         children: [
           Container(color: Colors.redAccent),
           Container(color: Colors.green),
