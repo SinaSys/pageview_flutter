@@ -21,12 +21,19 @@ class MyApp extends StatelessWidget {
 }
 
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+
+  PageController _pageController = PageController(initialPage: 1);
+
   @override
   Widget build(BuildContext context) {
     return PageView(
-      pageSnapping: false,
-      scrollDirection: Axis.horizontal,
+      controller: _pageController,
       children: [
         Container(color: Colors.redAccent),
         Container(color: Colors.green),
