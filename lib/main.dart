@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -24,13 +25,21 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      pageSnapping: false,
-      scrollDirection: Axis.horizontal,
+    return Column(
       children: [
-        Container(color: Colors.redAccent),
-        Container(color: Colors.green),
-        Container(color: Colors.blue),
+        Expanded(
+          child: PageView(
+            children: [
+              Container(color: Colors.green,child: Text("Page 1 of PageView")),
+              Container(color: Colors.redAccent,child: Text("Page 2 of PageView")),
+              Container(color: Colors.blue,child: Text("Page 3 of PageView")),
+            ],
+          ),
+        ),
+        Expanded(child:
+          Container(
+            child: Text("This area is outside of Page view",textAlign: TextAlign.center,),
+          ),)
       ],
     );
   }
