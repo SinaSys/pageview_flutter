@@ -24,7 +24,8 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
 
-  PageController _pageController = PageController(initialPage: 1);
+  final PageController _pageController = PageController(initialPage: 1);
+  int _pageChanged = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +34,19 @@ class MyHomePage extends StatelessWidget {
         title: Text("PageView"),
         actions: [
           IconButton(icon: Icon(Icons.arrow_back), onPressed: (){
-            _pageController.animateToPage(0, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
+            _pageController.animateToPage(--_pageChanged, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
 
           }),
           IconButton(icon: Icon(Icons.arrow_forward), onPressed: (){
-            _pageController.animateToPage(2, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
+            _pageController.animateToPage(++_pageChanged, duration: Duration(milliseconds: 250), curve: Curves.bounceInOut);
 
           } ),
         ],
       ),
       body:  PageView(
+        onPageChanged: (index){
+          _pageChanged = index;
+        },
         controller: _pageController,
         children: [
           Container(color: Colors.redAccent),
